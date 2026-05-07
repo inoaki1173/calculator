@@ -27,7 +27,7 @@ body {
   flex-direction: column;
   
   height: 100vh;
-  padding: 10px;
+  padding: var(--padding-regular);
 }
 
 .calc-view {
@@ -36,20 +36,20 @@ body {
   justify-content: space-between;
 
   height: 80px;
-  padding: 0 5px;
-  border: 4px solid rgb(var(--v-theme-border));
+  padding: 0 var(--padding-small);
+  border: var(--border-regular) solid rgb(var(--v-theme-border));
   background-color: rgb(var(--v-theme-textInversion));
 
   container-type: size;
 
   & .formula {
-    font-size: 20px;
+    font-size: var(--font-small);
     text-align: right;
     line-height: 1.0;
   }
 
   & .result {
-    font-size: 50px;
+    font-size: var(--font-large);
     text-align: right;
     line-height: 1.0;
   }
