@@ -54,3 +54,29 @@ body {
     line-height: 1.0;
   }
 }
+
+.input-region {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  column-gap: var(--padding-regular);
+}
+
+.number-panel {
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--padding-regular);
+
+  .number-row {
+    display: flex;
+    flex-direction: row;
+    column-gap: var(--padding-regular);
+
+    .number-cell > * {
+      width: var(--button-size);
+      height: var(--button-size);
+
+      font-size: var(--font-regular);
+    }
+  }
+}
