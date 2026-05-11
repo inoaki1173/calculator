@@ -4,6 +4,7 @@ import { ButtonInfo } from '@renderer/types/buttonType'
 import NumberButton from '@renderer/components/NumberButton.vue'
 import FunctionButton from '@renderer/components/FunctionButton.vue'
 
+// 各数字/機能ボタンのラベル
 const numberGrid: ButtonInfo[][] = [
   [
     { label: '→', type: 'function' },
