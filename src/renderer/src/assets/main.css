@@ -80,3 +80,22 @@ body {
     }
   }
 }
+
+.operator-panel {
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--padding-regular);
+
+  .operator-col > * {
+    width: var(--button-operator-width);
+    height: var(--button-size);
+
+    background-color: rgb(var(--v-theme-btnOperator));
+    font-size: var(--font-large);
+  }
+
+  .equal-button {
+    color: rgb(var(--v-theme-textInversion));
+    background-color: rgb(var(--v-theme-btnEqual));
+  }
+}
