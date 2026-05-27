@@ -76,6 +76,7 @@ body {
       width: var(--button-size);
       height: var(--button-size);
 
+      background-color: rgb(var(--v-theme-textInversion));
       font-size: var(--font-regular);
     }
   }
@@ -86,7 +87,7 @@ body {
   flex-direction: column;
   row-gap: var(--padding-regular);
 
-  .operator-col > * {
+  .operator-cell > * {
     width: var(--button-operator-width);
     height: var(--button-size);
 

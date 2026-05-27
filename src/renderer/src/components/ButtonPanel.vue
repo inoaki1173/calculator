@@ -24,7 +24,7 @@ const operatorGrid: string[] = ['÷', '×', '-', '+', '=']
       </div>
     </div>
     <div class="operator-panel">
-      <div v-for="label in operatorGrid" :key="label" class="operator-col">
+      <div v-for="label in operatorGrid" :key="label" class="operator-cell">
         <calc-button :label="label" :class="{ 'equal-button': label === '=' }" />
       </div>
     </div>
