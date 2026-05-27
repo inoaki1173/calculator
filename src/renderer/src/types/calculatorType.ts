@@ -21,3 +21,7 @@ export type CalculatorEventType =
   | 'ERASEALL'
   | 'ERASE'
   | 'ERASEDIGIT'
+  | 'EMPTY'
+
+/** 電卓処理送信イベント */
+export type SendEvent = (event: CalculatorEvent) => void
