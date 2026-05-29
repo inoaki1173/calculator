@@ -15,6 +15,7 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     exclude: [...configDefaults.exclude, 'e2e/**'],
+    globals: true,
     root: fileURLToPath(new URL('./', import.meta.url)),
     setupFiles: ['./tests/setup.ts'],
     server: {
