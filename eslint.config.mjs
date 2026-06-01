@@ -33,6 +33,37 @@ export default defineConfig(
             lang: 'ts'
           }
         }
+      ],
+      '@typescript-eslint/member-ordering': [
+        'error',
+        {
+          default: [
+            // static-fields
+            'public-static-field',
+            'protected-instance-field',
+            'private-static-field',
+            // static-methods
+            'public-static-method',
+            'protected-static-method',
+            'private-static-method',
+            // instance-fields
+            'public-instance-field',
+            'protected-instance-field',
+            'private-instance-field',
+            // constructors
+            'public-constructor',
+            'protected-constructor',
+            'private-constructor',
+            // getters / setters
+            'public-accessor',
+            'protected-accessor',
+            'private-accessor',
+            // methods
+            'public-method',
+            'protected-method',
+            'private-method'
+          ]
+        }
       ]
     }
   },
