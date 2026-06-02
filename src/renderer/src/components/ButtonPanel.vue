@@ -1,49 +1,8 @@
 <script setup lang="ts">
 import CalcButton from '@renderer/components/CalcButton.vue'
-import { CalculatorEvent } from '@renderer/types/calculatorType'
+import { useButtonPanel } from '@renderer/composables/useButtonPanel'
 
-interface ButtonInfo {
-  label: string
-  event: CalculatorEvent
-}
-
-// 各数字/機能ボタンの情報
-const numberGrid: ButtonInfo[][] = [
-  [
-    { label: '→', event: { type: 'ERASEDIGIT', value: '→' } },
-    { label: 'CE', event: { type: 'ERASEALL' } },
-    { label: 'C', event: { type: 'ERASE' } }
-  ],
-  [
-    { label: '7', event: { type: 'DIGIT', value: '7' } },
-    { label: '8', event: { type: 'DIGIT', value: '8' } },
-    { label: '9', event: { type: 'DIGIT', value: '9' } }
-  ],
-  [
-    { label: '4', event: { type: 'DIGIT', value: '4' } },
-    { label: '5', event: { type: 'DIGIT', value: '5' } },
-    { label: '6', event: { type: 'DIGIT', value: '6' } }
-  ],
-  [
-    { label: '1', event: { type: 'DIGIT', value: '1' } },
-    { label: '2', event: { type: 'DIGIT', value: '2' } },
-    { label: '3', event: { type: 'DIGIT', value: '3' } }
-  ],
-  [
-    { label: '+/-', event: { type: 'NEGATE' } },
-    { label: '0', event: { type: 'DIGIT', value: '0' } },
-    { label: '.', event: { type: 'DIGIT', value: '.' } }
-  ]
-]
-
-// 各演算子ボタンのラベル
-const operatorGrid: ButtonInfo[] = [
-  { label: '÷', event: { type: 'OPERATOR', value: '÷' } },
-  { label: '×', event: { type: 'OPERATOR', value: '×' } },
-  { label: '-', event: { type: 'OPERATOR', value: '-' } },
-  { label: '+', event: { type: 'OPERATOR', value: '+' } },
-  { label: '=', event: { type: 'EQUAL', value: '=' } }
-]
+const { numberGrid, operatorGrid } = useButtonPanel()
 </script>
 
 <template>

@@ -9,7 +9,7 @@ export type CalculatorStateType =
 /** 電卓処理イベント */
 export interface CalculatorEvent {
   type: CalculatorEventType
-  value?: string
+  value: CalculatorKeyType
 }
 
 /** 電卓処理イベントの種類 */
@@ -25,3 +25,28 @@ export type CalculatorEventType =
 
 /** 電卓処理送信イベント */
 export type SendEvent = (event: CalculatorEvent) => void
+
+export const calculatorKeyTypeRaw = [
+  '0',
+  '1',
+  '2',
+  '3',
+  '4',
+  '5',
+  '6',
+  '7',
+  '8',
+  '9',
+  '.',
+  '+',
+  '-',
+  '*',
+  '/',
+  'Enter',
+  'Escape',
+  'Delete',
+  'Backspace',
+  'n'
+] as const
+
+export type CalculatorKeyType = (typeof calculatorKeyTypeRaw)[number]
