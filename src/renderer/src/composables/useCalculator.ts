@@ -1,7 +1,12 @@
 import { onMounted, onUnmounted, ref, Ref } from 'vue'
 
-import { CalculatorState, transition } from '@renderer/core/calculatorState'
-import { CalculatorEvent, CalculatorKeyType, SendEvent } from '@renderer/types/calculatorType'
+import { transition } from '@renderer/core/calculatorState'
+import {
+  CalculatorState,
+  CalculatorEvent,
+  CalculatorKeyType,
+  SendEvent
+} from '@renderer/types/calculatorType'
 import { isKeyType, keyToEventType } from '@renderer/core/keyTypeUtils'
 
 /** Composable関数 */
