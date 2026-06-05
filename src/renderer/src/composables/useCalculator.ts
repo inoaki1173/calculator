@@ -6,10 +6,12 @@ import { isKeyType, keyToEventType } from '@renderer/core/keyTypeUtils'
 
 /** Composable関数 */
 export const useCalculator = (): UseCalculator => {
+  // キーボード入力イベントの登録
   onMounted(() => {
     window.addEventListener('keydown', handleKeyDown)
   })
 
+  // キーボード入力イベントの解除
   onUnmounted(() => {
     window.removeEventListener('keydown', handleKeyDown)
   })

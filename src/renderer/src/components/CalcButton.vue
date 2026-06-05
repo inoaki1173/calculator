@@ -9,6 +9,7 @@ interface Props {
 }
 defineProps<Props>()
 
+// 電卓処理イベントを取得
 const sendEvent = inject<SendEvent>('sendEvent')
 </script>
 

@@ -1,4 +1,4 @@
-/** 電卓の管理状態 */
+/** 電卓の状態遷移用 */
 export type CalculatorStateType =
   | 'IDLE'
   | 'INPUT_LEFT'
@@ -26,6 +26,8 @@ export type CalculatorEventType =
 /** 電卓処理送信イベント */
 export type SendEvent = (event: CalculatorEvent) => void
 
+/** CalculatorKeyTypeの配列版 */
+// CalculatorKeyTypeを配列として扱いたい場合に利用する
 export const calculatorKeyTypeRaw = [
   '0',
   '1',
@@ -49,4 +51,9 @@ export const calculatorKeyTypeRaw = [
   'n'
 ] as const
 
+/** 電卓処理で扱うキー */
+/*
+JavaScript標準のKeyBoardEventに対応したキーの中から、
+電卓処理で使うものを抽出したType
+*/
 export type CalculatorKeyType = (typeof calculatorKeyTypeRaw)[number]
