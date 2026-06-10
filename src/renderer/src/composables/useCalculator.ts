@@ -29,7 +29,7 @@ export const useCalculator = (): UseCalculator => {
 
 // Composable返却値
 interface UseCalculator {
-  value: string
+  currentValue: string
   previousValue: string
   operator: string
   send: SendEvent
@@ -38,7 +38,7 @@ interface UseCalculator {
 /** 電卓の状態 */
 const state: Ref<CalculatorState> = ref({
   status: 'IDLE',
-  value: '',
+  currentValue: '',
   previousValue: '',
   operator: ''
 })

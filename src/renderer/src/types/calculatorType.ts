@@ -4,7 +4,7 @@ export interface CalculatorState {
   /** 現在の遷移状態 */
   status: CalculatorStateType
   /** 入力中の数字 */
-  value: string
+  currentValue: string
   /** 保持している値 */
   previousValue: string
   /** 入力されている演算子 */
