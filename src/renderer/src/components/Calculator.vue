@@ -5,7 +5,7 @@ import CalcView from '@renderer/components/CalcView.vue'
 import ButtonPanel from '@renderer/components/ButtonPanel.vue'
 import { useCalculator } from '@renderer/composables/useCalculator.js'
 
-// 電卓処理用のイベント
+// 電卓処理用のイベントを登録
 const { send } = useCalculator()
 provide('sendEvent', send)
 </script>

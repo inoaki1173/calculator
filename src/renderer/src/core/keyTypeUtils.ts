@@ -4,12 +4,28 @@ import {
   calculatorKeyTypeRaw
 } from '@renderer/types/calculatorType'
 
-/** 文字列がKeyTypeに含まれているか */
+/**
+ * 文字列がKeyTypeに含まれているか
+ *
+ * @param
+ * key - KeyTypeか確認したいキーの種類
+ *
+ * @returns
+ * 確認した結果を返す
+ * */
 export const isKeyType = (key: string): boolean => {
   return calculatorKeyTypeRaw.some((value) => value === key)
 }
 
-/** KeyTypeを対応イベントに変換する */
+/**
+ * KeyTypeを対応する電卓イベントに変換する
+ *
+ * @param
+ * key - 変換したいキーの種類
+ *
+ * @returns
+ * 変換したイベントを返す
+ */
 export const keyToEventType = (key: CalculatorKeyType): CalculatorEventType => {
   switch (key) {
     case '0':

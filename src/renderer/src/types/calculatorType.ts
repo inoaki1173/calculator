@@ -1,17 +1,19 @@
-/** 電卓の情報 */
-// 電卓が持つすべての状態を保持する
+/**
+ * 電卓が持つすべての状態を保管する
+ */
 export interface CalculatorState {
   /** 現在の遷移状態 */
   status: CalculatorStateType
-  /** 入力中の数字 */
+  /** 現在入力中の数字 */
   currentValue: string
-  /** 保持している値 */
+  /** 直前に入力した、計算処理用に保持している数字 */
   previousValue: string
-  /** 入力されている演算子 */
   operator: string
 }
 
-/** 電卓の状態遷移用 */
+/**
+ * 電卓が持ち、遷移する状態の一覧
+ */
 export type CalculatorStateType =
   | 'IDLE'
   | 'INPUT_LEFT'
@@ -19,13 +21,17 @@ export type CalculatorStateType =
   | 'INPUT_OPERATOR'
   | 'RESULT'
 
-/** 電卓処理イベント */
+/**
+ * 電卓処理の際に送るデータの集まり
+ */
 export interface CalculatorEvent {
   type: CalculatorEventType
   value: CalculatorKeyType
 }
 
-/** 電卓処理イベントの種類 */
+/**
+ * 電卓処理イベントの一覧
+ */
 export type CalculatorEventType =
   | 'DIGIT'
   | 'OPERATOR'
@@ -36,11 +42,14 @@ export type CalculatorEventType =
   | 'ERASEDIGIT'
   | 'EMPTY'
 
-/** 電卓処理送信イベント */
+/**
+ * 電卓処理送信イベント
+ */
 export type SendEvent = (event: CalculatorEvent) => void
 
-/** CalculatorKeyTypeの配列版 */
-// CalculatorKeyTypeを配列として扱いたい場合に利用する
+/**
+ * {@link CalculatorKeyType}の配列版
+ */
 export const calculatorKeyTypeRaw = [
   '0',
   '1',
@@ -64,9 +73,8 @@ export const calculatorKeyTypeRaw = [
   'n'
 ] as const
 
-/** 電卓処理で扱うキー */
-/*
-JavaScript標準のKeyBoardEventに対応したキーの中から、
-電卓処理で使うものを抽出したType
-*/
+/**
+ * 電卓処理で使う内部キーの一覧
+ * @summary JavaScript標準のKeyBoardEventで使うキーに対応した、電卓処理で使う内部キーの一覧
+ */
 export type CalculatorKeyType = (typeof calculatorKeyTypeRaw)[number]

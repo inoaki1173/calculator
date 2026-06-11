@@ -1,6 +1,12 @@
 import { CalculatorEvent } from '@renderer/types/calculatorType'
 
-/** Composable関数 */
+/**
+ * Composable関数
+ *
+ * @returns
+ * numberGrid - 各数字/機能ボタンの情報 \
+ * operatorGrid - 各演算子ボタンの情報
+ */
 export const useButtonPanel = (): UseButtonPanel => {
   return {
     numberGrid,
@@ -8,7 +14,7 @@ export const useButtonPanel = (): UseButtonPanel => {
   }
 }
 
-// Composable返却値
+/** Composable関数の戻り値用 */
 interface UseButtonPanel {
   numberGrid: ButtonInfo[][]
   operatorGrid: ButtonInfo[]
@@ -16,11 +22,12 @@ interface UseButtonPanel {
 
 /** ボタンの構成データ */
 interface ButtonInfo {
+  /** ボタン表示 */
   label: string
   event: CalculatorEvent
 }
 
-// 各数字/機能ボタンの情報
+/** 各数字/機能ボタンの情報 */
 const numberGrid: ButtonInfo[][] = [
   [
     { label: '→', event: { type: 'ERASEDIGIT', value: 'Backspace' } },
@@ -49,7 +56,7 @@ const numberGrid: ButtonInfo[][] = [
   ]
 ]
 
-// 各演算子ボタンのラベル
+/** 各演算子ボタンの情報 */
 const operatorGrid: ButtonInfo[] = [
   { label: '÷', event: { type: 'OPERATOR', value: '/' } },
   { label: '×', event: { type: 'OPERATOR', value: '*' } },

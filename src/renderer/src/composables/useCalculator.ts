@@ -9,14 +9,20 @@ import {
 } from '@renderer/types/calculatorType'
 import { isKeyType, keyToEventType } from '@renderer/core/keyTypeUtils'
 
-/** Composable関数 */
+/** Composable関数
+ *
+ * @returns
+ * currentValue - 現在の数字 \
+ * previousValue - 直前に入力した、計算処理用に保持している数字 \
+ * operator - 現在の演算子 \
+ * send - 電卓処理用イベント
+ */
 export const useCalculator = (): UseCalculator => {
-  // キーボード入力イベントの登録
+  // キーボード入力による電卓処理を登録
   onMounted(() => {
     window.addEventListener('keydown', handleKeyDown)
   })
 
-  // キーボード入力イベントの解除
   onUnmounted(() => {
     window.removeEventListener('keydown', handleKeyDown)
   })
@@ -27,7 +33,7 @@ export const useCalculator = (): UseCalculator => {
   }
 }
 
-// Composable返却値
+/** Composable関数の戻り値用 */
 interface UseCalculator {
   currentValue: string
   previousValue: string
@@ -35,7 +41,7 @@ interface UseCalculator {
   send: SendEvent
 }
 
-/** 電卓の状態 */
+/** 電卓が管理する現在のデータ */
 const state: Ref<CalculatorState> = ref({
   status: 'IDLE',
   currentValue: '',
@@ -43,19 +49,28 @@ const state: Ref<CalculatorState> = ref({
   operator: ''
 })
 
-/** イベントを通知する */
+/**
+ * 電卓処理イベントを通知する
+ *
+ * @param
+ * event - 電卓処理の内容
+ */
 const send: SendEvent = (event) => {
   state.value = transition(state.value, event)
 }
 
-/** キーボード入力時の処理 */
+/**
+ * キーボード入力を電卓処理に変換して実行する
+ *
+ * @param
+ * event - 入力されたキーボードのキー
+ */
 const handleKeyDown = (event: KeyboardEvent): void => {
-  // KeyType以外はスルー
   if (isKeyType(event.key) === false) {
     return
   }
 
-  // 送信用データを生成
+  // 電卓処理用送信データを生成
   const key: CalculatorKeyType = event.key as CalculatorKeyType
   const calculatorEvent: CalculatorEvent = {
     type: keyToEventType(key),
