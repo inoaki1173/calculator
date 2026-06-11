@@ -12,7 +12,8 @@ const theme: ThemeDefinition = {
     border: '#808080',
     btnNumber: '#FFFFFF',
     btnOperator: '#A7DBF2',
-    btnEqual: '#1984B9',
+    btnFunction: '#CCFAFF',
+    btnEqual: '#FFCCCC',
     background: '#EBECFA'
   }
 }
