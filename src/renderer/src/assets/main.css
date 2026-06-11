@@ -62,41 +62,43 @@ body {
   column-gap: var(--padding-regular);
 }
 
-.number-panel {
+.number-panel, .operator-panel {
   display: flex;
   flex-direction: column;
   row-gap: var(--padding-regular);
-
-  .number-row {
-    display: flex;
-    flex-direction: row;
-    column-gap: var(--padding-regular);
-
-    .number-cell > * {
-      width: var(--button-size);
-      height: var(--button-size);
-
-      background-color: rgb(var(--v-theme-textInversion));
-      font-size: var(--font-regular);
-    }
-  }
 }
 
-.operator-panel {
+.number-row {
   display: flex;
-  flex-direction: column;
-  row-gap: var(--padding-regular);
+  flex-direction: row;
+  column-gap: var(--padding-regular);
+}
 
-  .operator-cell > * {
-    width: var(--button-operator-width);
-    height: var(--button-size);
+.number-cell > *, .operator-cell > * {
+  width: var(--button-size);
+  height: var(--button-size);
 
-    background-color: rgb(var(--v-theme-btnOperator));
-    font-size: var(--font-large);
-  }
+  font-size: var(--font-regular);
+}
 
-  .equal-button {
-    color: rgb(var(--v-theme-textInversion));
-    background-color: rgb(var(--v-theme-btnEqual));
-  }
+.operator-cell > * {
+  width: var(--button-operator-width);
+  font-size: var(--font-large);
+}
+
+.number-button {
+  background-color: rgb(var(--v-theme-textInversion));
+}
+
+.function-button {
+  background-color: rgb(var(--v-theme-btnFunction));
+}
+
+.operator-button {
+  background-color: rgb(var(--v-theme-btnOperator));
+}
+
+.equal-button {
+  color: rgb(var(--v-theme-text));
+  background-color: rgb(var(--v-theme-btnEqual));
 }

@@ -1,4 +1,4 @@
-import { CalculatorEvent } from '@renderer/types/calculatorType'
+import { CalculatorEvent, CalculatorEventType } from '@renderer/types/calculatorType'
 
 /**
  * Composable関数
@@ -10,7 +10,8 @@ import { CalculatorEvent } from '@renderer/types/calculatorType'
 export const useButtonPanel = (): UseButtonPanel => {
   return {
     numberGrid,
-    operatorGrid
+    operatorGrid,
+    getButtonClass
   }
 }
 
@@ -18,6 +19,7 @@ export const useButtonPanel = (): UseButtonPanel => {
 interface UseButtonPanel {
   numberGrid: ButtonInfo[][]
   operatorGrid: ButtonInfo[]
+  getButtonClass: (type: CalculatorEventType) => string
 }
 
 /** ボタンの構成データ */
@@ -64,3 +66,29 @@ const operatorGrid: ButtonInfo[] = [
   { label: '+', event: { type: 'OPERATOR', value: '+' } },
   { label: '=', event: { type: 'EQUAL', value: 'Enter' } }
 ]
+
+/**
+ * ボタンの持つイベントに応じたCSSクラス名を取得する
+ *
+ * @param
+ * type - ボタンの持つイベントの種類
+ *
+ * @returns
+ * CSSクラス名
+ */
+const getButtonClass = (type: CalculatorEventType): string => {
+  switch (type) {
+    case 'DIGIT':
+      return 'number-button'
+    case 'ERASE':
+    case 'ERASEALL':
+    case 'ERASEDIGIT':
+      return 'function-button'
+    case 'OPERATOR':
+      return 'operator-button'
+    case 'EQUAL':
+      return 'equal-button'
+    default:
+      return ''
+  }
+}

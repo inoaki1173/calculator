@@ -2,7 +2,7 @@
 import CalcButton from '@renderer/components/CalcButton.vue'
 import { useButtonPanel } from '@renderer/composables/useButtonPanel'
 
-const { numberGrid, operatorGrid } = useButtonPanel()
+const { numberGrid, operatorGrid, getButtonClass } = useButtonPanel()
 </script>
 
 <template>
@@ -10,7 +10,11 @@ const { numberGrid, operatorGrid } = useButtonPanel()
     <div class="number-panel">
       <div v-for="(row, idx) in numberGrid" :key="'row-' + (idx + 1)" class="number-row">
         <div v-for="info in row" :key="'cell-' + info.label" class="number-cell">
-          <calc-button :label="info.label" :event="info.event" />
+          <calc-button
+            :label="info.label"
+            :event="info.event"
+            :class="getButtonClass(info.event.type)"
+          />
         </div>
       </div>
     </div>
@@ -19,7 +23,7 @@ const { numberGrid, operatorGrid } = useButtonPanel()
         <calc-button
           :label="info.label"
           :event="info.event"
-          :class="{ 'equal-button': info.event.type === 'EQUAL' }"
+          :class="getButtonClass(info.event.type)"
         />
       </div>
     </div>
