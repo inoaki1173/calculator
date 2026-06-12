@@ -14,5 +14,10 @@ const sendEvent = inject<SendEvent>('sendEvent')
 </script>
 
 <template>
-  <v-btn :text="label" class="calc-button" @click="sendEvent?.(event)" />
+  <v-btn
+    v-ripple.center
+    :text="label"
+    class="calc-button button-ripple"
+    @click="sendEvent?.(event)"
+  />
 </template>

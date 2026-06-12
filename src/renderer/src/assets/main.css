@@ -107,3 +107,7 @@ body {
 .equal-button {
   background-color: rgb(var(--v-theme-btnEqual));
 }
+
+.button-ripple .v-ripple__container {
+  color: rgb(var(--v-theme-btnEffect));
+}

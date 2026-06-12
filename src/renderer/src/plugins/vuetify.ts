@@ -14,6 +14,7 @@ const theme: ThemeDefinition = {
     btnOperator: '#A7DBF2',
     btnFunction: '#CCFAFF',
     btnEqual: '#FFCCCC',
+    btnEffect: '#228ABE',
     background: '#EBECFA'
   }
 }
