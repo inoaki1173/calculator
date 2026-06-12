@@ -81,6 +81,7 @@ body {
   width: var(--button-width);
   height: var(--button-height);
 
+  color: var(--v-theme-text);
   font-size: var(--font-regular);
 }
 
@@ -104,6 +105,5 @@ body {
 }
 
 .equal-button {
-  color: rgb(var(--v-theme-text));
   background-color: rgb(var(--v-theme-btnEqual));
 }
