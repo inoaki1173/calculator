@@ -37,7 +37,8 @@
   --padding-regular: 10px;
   --padding-small: 5px;
 
-  --button-size: 75px;
+  --button-width: 75px;
+  --button-height: 75px;
   --button-operator-width: 100px;
 
   --font-large: 50px;

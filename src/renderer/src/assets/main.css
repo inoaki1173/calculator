@@ -75,8 +75,8 @@ body {
 }
 
 .number-cell > *, .operator-cell > * {
-  width: var(--button-size);
-  height: var(--button-size);
+  width: var(--button-width);
+  height: var(--button-height);
 
   font-size: var(--font-regular);
 }
