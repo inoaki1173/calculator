@@ -58,7 +58,10 @@ body {
 .button-panel {
   display: flex;
   flex-direction: row;
+  /*
   justify-content: space-between;
+  */
+  justify-content: center;
   column-gap: var(--padding-regular);
 }
 
@@ -82,7 +85,9 @@ body {
 }
 
 .operator-cell > * {
+  /*
   width: var(--button-operator-width);
+  */
   font-size: var(--font-large);
 }
 
