@@ -79,6 +79,7 @@ const operatorGrid: ButtonInfo[] = [
 const getButtonClass = (type: CalculatorEventType): string => {
   switch (type) {
     case 'DIGIT':
+    case 'NEGATE':
       return 'number-button'
     case 'ERASE':
     case 'ERASEALL':
