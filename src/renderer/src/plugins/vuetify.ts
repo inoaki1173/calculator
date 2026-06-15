@@ -15,6 +15,7 @@ const theme: ThemeDefinition = {
     btnFunction: '#CCFAFF',
     btnEqual: '#FFCCCC',
     btnEffect: '#228ABE',
+    btnShadow: '#505050',
     background: '#EBECFA'
   }
 }
