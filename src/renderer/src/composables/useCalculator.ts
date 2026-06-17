@@ -5,7 +5,8 @@ import {
   CalculatorState,
   CalculatorEvent,
   CalculatorKeyType,
-  SendEvent
+  SendEvent,
+  ButtonPanelInstance
 } from '@renderer/types/calculatorType'
 import { isKeyType, keyToEventType } from '@renderer/core/keyTypeUtils'
 
@@ -17,10 +18,11 @@ import { isKeyType, keyToEventType } from '@renderer/core/keyTypeUtils'
  * operator - 現在の演算子 \
  * send - 電卓処理用イベント
  */
-export const useCalculator = (): UseCalculator => {
+export const useCalculator = (buttonPanelRef: Ref<ButtonPanelInstance>): UseCalculator => {
   // キーボード入力による電卓処理を登録
   onMounted(() => {
     window.addEventListener('keydown', handleKeyDown)
+    _buttonPanelRef = buttonPanelRef
   })
 
   onUnmounted(() => {
@@ -49,6 +51,9 @@ const state: Ref<CalculatorState> = ref({
   operator: ''
 })
 
+/** ボタンクリックエフェクト発火用 */
+let _buttonPanelRef: Ref<ButtonPanelInstance>
+
 /**
  * 電卓処理イベントを通知する
  *
@@ -69,6 +74,9 @@ const handleKeyDown = (event: KeyboardEvent): void => {
   if (isKeyType(event.key) === false) {
     return
   }
+
+  // ボタンクリックエフェクトを発動
+  _buttonPanelRef.value.buttonRecord[event.key].triggerButtonRipple()
 
   // 電卓処理用送信データを生成
   const key: CalculatorKeyType = event.key as CalculatorKeyType

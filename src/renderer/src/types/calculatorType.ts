@@ -1,3 +1,6 @@
+import ButtonPanel from '@renderer/components/ButtonPanel.vue'
+import CalcButton from '@renderer/components/CalcButton.vue'
+
 /**
  * 電卓が持つすべての状態を保管する
  */
@@ -48,6 +51,11 @@ export type CalculatorEventType =
 export type SendEvent = (event: CalculatorEvent) => void
 
 /**
+ * ボタンクリックエフェクトの明示的発火イベント
+ */
+export type RippleEvent = (el: HTMLElement) => void
+
+/**
  * {@link CalculatorKeyType}の配列版
  */
 export const calculatorKeyTypeRaw = [
@@ -78,3 +86,13 @@ export const calculatorKeyTypeRaw = [
  * @summary JavaScript標準のKeyBoardEventで使うキーに対応した、電卓処理で使う内部キーの一覧
  */
 export type CalculatorKeyType = (typeof calculatorKeyTypeRaw)[number]
+
+/**
+ * ButtonPanelコンポーネントの型
+ */
+export type ButtonPanelInstance = InstanceType<typeof ButtonPanel>
+
+/**
+ * CalcButtonコンポーネントの型
+ */
+export type CalcButtonInstance = InstanceType<typeof CalcButton>

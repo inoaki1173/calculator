@@ -1,13 +1,21 @@
 <script setup lang="ts">
-import { inject } from 'vue'
+import { inject, useTemplateRef } from 'vue'
 
 import { CalculatorEvent, SendEvent } from '@renderer/types/calculatorType'
+import { useCalcButton } from '@renderer/composables/useCalcButton'
+import { VBtn } from 'vuetify/components'
 
-interface Props {
+const { triggerRipple } = useCalcButton()
+
+defineProps<{
   label: string
   event: CalculatorEvent
-}
-defineProps<Props>()
+}>()
+
+// クリックエフェクト用関数を親に公開
+const buttonRef = useTemplateRef('button')
+const triggerButtonRipple = (): void => triggerRipple(buttonRef.value?.$el)
+defineExpose({ triggerButtonRipple })
 
 // 電卓処理イベントを取得
 const sendEvent = inject<SendEvent>('sendEvent')
@@ -15,6 +23,7 @@ const sendEvent = inject<SendEvent>('sendEvent')
 
 <template>
   <v-btn
+    ref="button"
     v-ripple.center
     :text="label"
     class="calc-button button-ripple"
