@@ -13,8 +13,8 @@ const theme: ThemeDefinition = {
     btnNumber: '#FFFFFF',
     btnOperator: '#A7DBF2',
     btnFunction: '#CCFAFF',
-    btnEqual: '#FFCCCC',
-    btnEffect: '#228ABE',
+    btnEqual: '#E1F69D',
+    btnEffect: '#FF5E5E',
     btnShadow: '#505050',
     background: '#EBECFA'
   }
