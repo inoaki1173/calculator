@@ -1,4 +1,4 @@
-import { onMounted, onUnmounted, ref, Ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref, Ref } from 'vue'
 
 import { transition } from '@renderer/core/calculatorState'
 import {
@@ -9,6 +9,7 @@ import {
   ButtonPanelInstance
 } from '@renderer/types/calculatorType'
 import { isKeyType, keyToEventType } from '@renderer/core/keyTypeUtils'
+import { operatorToLabel } from '@renderer/core/operatorUtils'
 
 /** Composable関数
  *
@@ -30,16 +31,16 @@ export const useCalculator = (buttonPanelRef: Ref<ButtonPanelInstance>): UseCalc
   })
 
   return {
-    ...state.value,
+    displayResult,
+    displayFormula,
     send: send
   }
 }
 
 /** Composable関数の戻り値用 */
 interface UseCalculator {
-  currentValue: string
-  previousValue: string
-  operator: string
+  displayResult: Ref<string>
+  displayFormula: Ref<string>
   send: SendEvent
 }
 
@@ -49,6 +50,14 @@ const state: Ref<CalculatorState> = ref({
   currentValue: '',
   previousValue: '',
   operator: ''
+})
+
+const displayResult = computed(() => {
+  return state.value.currentValue
+})
+const displayFormula = computed(() => {
+  const displayEqual = state.value.status === 'RESULT' ? '=' : ''
+  return `${state.value.previousValue} ${operatorToLabel(state.value.operator)} ${state.value.currentValue} ${displayEqual}`
 })
 
 /** ボタンクリックエフェクト発火用 */

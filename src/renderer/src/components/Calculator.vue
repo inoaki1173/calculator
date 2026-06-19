@@ -10,13 +10,15 @@ import { ButtonPanelInstance } from '@renderer/types/calculatorType'
 const buttonPanelRef = useTemplateRef('buttonPanel')
 
 // 電卓処理用のイベントを登録
-const { send } = useCalculator(buttonPanelRef as Ref<ButtonPanelInstance>)
+const { displayResult, displayFormula, send } = useCalculator(
+  buttonPanelRef as Ref<ButtonPanelInstance>
+)
 provide('sendEvent', send)
 </script>
 
 <template>
   <div class="calculator">
-    <calc-view />
+    <calc-view :result="displayResult" :formula="displayFormula" />
     <button-panel ref="buttonPanel" />
   </div>
 </template>

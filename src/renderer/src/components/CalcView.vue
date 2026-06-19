@@ -1,8 +1,13 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+defineProps<{
+  result: string
+  formula: string
+}>()
+</script>
 
 <template>
   <div class="calc-view">
-    <div class="formula">100+23=</div>
-    <div class="result">{{ 100 + 23 }}</div>
+    <div class="formula">{{ formula }}</div>
+    <div class="result">{{ result }}</div>
   </div>
 </template>
