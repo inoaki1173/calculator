@@ -83,6 +83,15 @@ export const transition = (state: CalculatorState, event: CalculatorEvent): Calc
     returnedState.previousValue = ''
     returnedState.operator = ''
     addNumber()
+  } else if (check('INPUT_LEFT', 'ERASEDIGIT') || check('INPUT_RIGHT', 'ERASEDIGIT')) {
+    // 左辺入力状態 / 右辺入力状態 : 1桁消去処理
+
+    if (state.currentValue.length) {
+      returnedState.currentValue = state.currentValue.slice(0, state.currentValue.length - 1)
+    }
+    if (returnedState.currentValue.length <= 0) {
+      returnedState.currentValue = '0'
+    }
   }
 
   return returnedState
