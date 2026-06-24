@@ -39,21 +39,21 @@ export const transition = (state: CalculatorState, event: CalculatorEvent): Calc
    * 数字入力処理
    */
   const addNumber = (): void => {
-    if (MAX_VALUE_SIZE <= state.currentValue.replace('.', '').length) {
+    if (MAX_VALUE_SIZE <= returnedState.currentValue.replace('.', '').length) {
       return
     }
     if (event.value === '.') {
       // すでに小数点が入力されているなら中止
-      if (state.currentValue.includes('.')) {
+      if (returnedState.currentValue.includes('.')) {
         return
       }
       // 初期状態では空白表示のため、0を付け足す
-      if (state.currentValue === '') {
+      if (returnedState.currentValue === '') {
         returnedState.currentValue = '0'
       }
     }
     // 直前の値が0のみの場合、上書きする
-    else if (state.currentValue === '0') {
+    else if (returnedState.currentValue === '0') {
       returnedState.currentValue = ''
     }
 
@@ -86,8 +86,11 @@ export const transition = (state: CalculatorState, event: CalculatorEvent): Calc
   } else if (check('INPUT_LEFT', 'ERASEDIGIT') || check('INPUT_RIGHT', 'ERASEDIGIT')) {
     // 左辺入力状態 / 右辺入力状態 : 1桁消去処理
 
-    if (state.currentValue.length) {
-      returnedState.currentValue = state.currentValue.slice(0, state.currentValue.length - 1)
+    if (returnedState.currentValue.length) {
+      returnedState.currentValue = returnedState.currentValue.slice(
+        0,
+        returnedState.currentValue.length - 1
+      )
     }
     if (returnedState.currentValue.length <= 0) {
       returnedState.currentValue = '0'
