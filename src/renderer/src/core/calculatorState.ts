@@ -83,6 +83,13 @@ export const transition = (state: CalculatorState, event: CalculatorEvent): Calc
     returnedState.previousValue = ''
     returnedState.operator = ''
     addNumber()
+  } else if (event.type === 'ERASEALL') {
+    // すべての状態 : 全消去処理
+
+    returnedState.status = 'IDLE'
+    returnedState.currentValue = ''
+    returnedState.previousValue = ''
+    returnedState.operator = ''
   } else if (check('INPUT_LEFT', 'ERASE') || check('INPUT_RIGHT', 'ERASE')) {
     // 左辺入力状態 / 右辺入力状態 : 現在値消去処理
 
