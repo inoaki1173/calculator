@@ -33,8 +33,8 @@ interface ButtonInfo {
 const numberGrid: ButtonInfo[][] = [
   [
     { label: '→', event: { type: 'ERASEDIGIT', value: 'Backspace' } },
-    { label: 'CE', event: { type: 'ERASEALL', value: 'Delete' } },
-    { label: 'C', event: { type: 'ERASE', value: 'Escape' } }
+    { label: 'CE', event: { type: 'ERASE', value: 'Delete' } },
+    { label: 'C', event: { type: 'ERASEALL', value: 'Escape' } }
   ],
   [
     { label: '7', event: { type: 'DIGIT', value: '7' } },
