@@ -22,7 +22,10 @@ export const MAX_VALUE_SIZE = 10
  * @returns
  * 更新後のデータを返す
  */
-export const transition = (state: CalculatorState, event: CalculatorEvent): CalculatorState => {
+export const transition = (
+  state: Readonly<CalculatorState>,
+  event: CalculatorEvent
+): CalculatorState => {
   const returnedState: CalculatorState = clonedeep(state)
 
   /**
