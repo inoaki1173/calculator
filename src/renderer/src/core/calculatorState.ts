@@ -83,6 +83,21 @@ export const transition = (state: CalculatorState, event: CalculatorEvent): Calc
     returnedState.previousValue = ''
     returnedState.operator = ''
     addNumber()
+  } else if (check('INPUT_LEFT', 'OPERATOR')) {
+    // 左辺入力状態 : 演算子入力処理
+
+    if (returnedState.currentValue.at(-1) === '.') {
+      returnedState.currentValue += '0'
+    }
+
+    returnedState.status = 'INPUT_OPERATOR'
+    returnedState.previousValue = returnedState.currentValue
+    returnedState.currentValue = ''
+    returnedState.operator = event.value
+  } else if (check('INPUT_OPERATOR', 'OPERATOR')) {
+    // 演算子入力状態 : 演算子入力処理
+
+    returnedState.operator = event.value
   } else if (event.type === 'ERASEALL') {
     // すべての状態 : 全消去処理
 
