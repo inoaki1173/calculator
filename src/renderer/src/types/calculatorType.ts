@@ -23,6 +23,7 @@ export type CalculatorStateType =
   | 'INPUT_RIGHT'
   | 'INPUT_OPERATOR'
   | 'RESULT'
+  | 'ERROR'
 
 /**
  * 電卓処理の際に送るデータの集まり

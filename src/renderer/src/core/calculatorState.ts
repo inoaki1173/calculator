@@ -2,9 +2,12 @@ import {
   CalculatorState,
   CalculatorStateType,
   CalculatorEvent,
-  CalculatorEventType
+  CalculatorEventType,
+  CalculatorKeyType
 } from '@renderer/types/calculatorType'
 import clonedeep from 'lodash.clonedeep'
+import { Ref, ref } from 'vue'
+import { calculate } from './calcFunction'
 
 /** 電卓の現在数字の最大桁数 */
 export const MAX_VALUE_SIZE = 10
@@ -63,6 +66,20 @@ export const transition = (
     returnedState.currentValue += event.value
   }
 
+  const updateResult = (): boolean => {
+    const result = calculate(
+      returnedState.previousValue,
+      returnedState.currentValue,
+      returnedState.operator as CalculatorKeyType
+    )
+
+    if (MAX_VALUE_SIZE < result.replace('.', '').length) {
+      return false
+    }
+    currentResult.value = result
+    return true
+  }
+
   // 状態とイベントに応じて、異なる処理を行う
   if (check('IDLE', 'DIGIT')) {
     // 初期状態 : 数字入力処理
@@ -101,6 +118,24 @@ export const transition = (
     // 演算子入力状態 : 演算子入力処理
 
     returnedState.operator = event.value
+  } else if (check('INPUT_RIGHT', 'EQUAL')) {
+    // 右辺入力状態 : 計算実行処理
+
+    returnedState.status = 'RESULT'
+    const success: boolean = updateResult()
+    if (success == false) {
+      returnedState.status = 'ERROR'
+      returnedState.currentValue = '10桁超過'
+      returnedState.previousValue = ''
+      returnedState.operator = ''
+    }
+  } else if (check('RESULT', 'OPERATOR')) {
+    // 計算結果確定状態 : 演算子入力処理
+
+    returnedState.status = 'INPUT_OPERATOR'
+    returnedState.currentValue = ''
+    returnedState.previousValue = currentResult.value
+    returnedState.operator = event.value
   } else if (event.type === 'ERASEALL') {
     // すべての状態 : 全消去処理
 
@@ -128,3 +163,5 @@ export const transition = (
 
   return returnedState
 }
+
+export const currentResult: Ref<string> = ref('')

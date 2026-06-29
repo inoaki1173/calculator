@@ -1,6 +1,6 @@
 import { computed, onMounted, onUnmounted, ref, Ref } from 'vue'
 
-import { transition } from '@renderer/core/calculatorState'
+import { transition, currentResult } from '@renderer/core/calculatorState'
 import {
   CalculatorState,
   CalculatorEvent,
@@ -53,11 +53,19 @@ const state: Ref<CalculatorState> = ref({
 })
 
 const displayResult = computed(() => {
-  return state.value.currentValue
+  if (state.value.status === 'RESULT') {
+    return currentResult.value
+  } else {
+    return state.value.currentValue
+  }
 })
 const displayFormula = computed(() => {
-  const displayEqual = state.value.status === 'RESULT' ? '=' : ''
-  return `${state.value.previousValue} ${operatorToLabel(state.value.operator)} ${state.value.currentValue} ${displayEqual}`
+  if (state.value.status === 'ERROR') {
+    return ''
+  } else {
+    const displayEqual = state.value.status === 'RESULT' ? '=' : ''
+    return `${state.value.previousValue} ${operatorToLabel(state.value.operator)} ${state.value.currentValue} ${displayEqual}`
+  }
 })
 
 /** ボタンクリックエフェクト発火用 */
