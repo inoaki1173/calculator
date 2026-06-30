@@ -7,7 +7,7 @@ import {
 } from '@renderer/types/calculatorType'
 import clonedeep from 'lodash.clonedeep'
 import { Ref, ref } from 'vue'
-import { calculate } from './calcFunction'
+import { calculate } from '@renderer/core/calcFunction'
 
 /** 電卓の現在数字の最大桁数 */
 export const MAX_VALUE_SIZE = 10
@@ -66,6 +66,13 @@ export const transition = (
     returnedState.currentValue += event.value
   }
 
+  /**
+   * 計算結果を保存する
+   * @summary 現在の入力値を使って計算を行い、結果を更新する \
+   *          オーバーフロー等の場合は更新されない
+   *
+   * @returns 計算結果が更新されたか
+   */
   const updateResult = (): boolean => {
     const result = calculate(
       returnedState.previousValue,
