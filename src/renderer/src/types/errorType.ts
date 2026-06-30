@@ -1,3 +1,4 @@
 export const errorText = {
-  overflow: 'OVER FLOW'
+  overflow: 'OVER FLOW',
+  divisionByZero: 'DIVISION BY 0'
 } as const

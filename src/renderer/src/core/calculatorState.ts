@@ -72,15 +72,22 @@ export const transition = (
    * @summary 現在の入力値を使って計算を行い、結果を更新する \
    *          オーバーフロー等の場合は更新されない
    *
-   * @returns 計算結果が更新されたか
+   * @returns 正常に計算結果が更新されたか
    */
   const updateResult = (): boolean => {
+    // ゼロ除算
+    if (returnedState.operator === '/' && returnedState.currentValue === '0') {
+      showError(errorText.divisionByZero)
+      return false
+    }
+
     const result = calculate(
       returnedState.previousValue,
       returnedState.currentValue,
       returnedState.operator as CalculatorKeyType
     )
 
+    // 桁オーバーフロー
     if (MAX_VALUE_SIZE < result.replace('.', '').length) {
       showError(errorText.overflow)
       return false
