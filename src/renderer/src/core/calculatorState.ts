@@ -82,8 +82,10 @@ export const transition = (
     )
 
     if (MAX_VALUE_SIZE < result.replace('.', '').length) {
+      showError(errorText.overflow)
       return false
     }
+
     currentResult.value = result
     return true
   }
@@ -142,16 +144,13 @@ export const transition = (
       returnedState.currentValue = ''
       returnedState.previousValue = currentResult.value
       returnedState.operator = event.value
-    } else {
-      showError(errorText.overflow)
     }
   } else if (check('INPUT_RIGHT', 'EQUAL')) {
     // 右辺入力状態 : 計算実行処理
 
-    returnedState.status = 'RESULT'
     const success: boolean = updateResult()
-    if (success == false) {
-      showError(errorText.overflow)
+    if (success) {
+      returnedState.status = 'RESULT'
     }
   } else if (check('RESULT', 'OPERATOR')) {
     // 計算結果確定状態 : 演算子入力処理
