@@ -8,6 +8,7 @@ import {
 import clonedeep from 'lodash.clonedeep'
 import { Ref, ref } from 'vue'
 import { calculate } from '@renderer/core/calcFunction'
+import { errorText } from '@renderer/types/errorTypes'
 
 /** 電卓の現在数字の最大桁数 */
 export const MAX_VALUE_SIZE = 10
@@ -87,6 +88,13 @@ export const transition = (
     return true
   }
 
+  const showError = (errorText: string): void => {
+    returnedState.status = 'ERROR'
+    returnedState.currentValue = errorText
+    returnedState.previousValue = ''
+    returnedState.operator = ''
+  }
+
   // 状態とイベントに応じて、異なる処理を行う
   if (check('IDLE', 'DIGIT')) {
     // 初期状態 : 数字入力処理
@@ -131,10 +139,7 @@ export const transition = (
     returnedState.status = 'RESULT'
     const success: boolean = updateResult()
     if (success == false) {
-      returnedState.status = 'ERROR'
-      returnedState.currentValue = '10桁超過'
-      returnedState.previousValue = ''
-      returnedState.operator = ''
+      showError(errorText.overflow)
     }
   } else if (check('RESULT', 'OPERATOR')) {
     // 計算結果確定状態 : 演算子入力処理
