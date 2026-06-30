@@ -1,3 +1,3 @@
 export const errorText = {
-  overflow: 'オーバーフロー'
+  overflow: 'OVER FLOW'
 } as const
