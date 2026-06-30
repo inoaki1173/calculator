@@ -8,7 +8,7 @@ import {
 import clonedeep from 'lodash.clonedeep'
 import { Ref, ref } from 'vue'
 import { calculate } from '@renderer/core/calcFunction'
-import { errorText } from '@renderer/types/errorTypes'
+import { errorText } from '@renderer/types/errorType'
 
 /** 電卓の現在数字の最大桁数 */
 export const MAX_VALUE_SIZE = 10
