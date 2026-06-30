@@ -133,6 +133,18 @@ export const transition = (
     // 演算子入力状態 : 演算子入力処理
 
     returnedState.operator = event.value
+  } else if (check('INPUT_RIGHT', 'OPERATOR')) {
+    // 右辺入力状態 : 演算子入力処理
+
+    const success: boolean = updateResult()
+    if (success) {
+      returnedState.status = 'INPUT_OPERATOR'
+      returnedState.currentValue = ''
+      returnedState.previousValue = currentResult.value
+      returnedState.operator = event.value
+    } else {
+      showError(errorText.overflow)
+    }
   } else if (check('INPUT_RIGHT', 'EQUAL')) {
     // 右辺入力状態 : 計算実行処理
 
