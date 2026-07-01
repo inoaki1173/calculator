@@ -26,6 +26,7 @@ const sendEvent = inject<SendEvent>('sendEvent')
     ref="button"
     v-ripple.center
     :text="label"
+    tabindex="-1"
     class="calc-button button-ripple"
     @click="sendEvent?.(event)"
   />
