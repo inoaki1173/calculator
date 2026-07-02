@@ -46,7 +46,7 @@ export const transition = (
    * 数字入力処理
    */
   const addNumber = (): void => {
-    if (MAX_VALUE_SIZE <= returnedState.currentValue.replace('.', '').length) {
+    if (MAX_VALUE_SIZE <= returnedState.currentValue.replace('.', '').replace('-', '').length) {
       return
     }
     if (event.value === '.') {
@@ -60,7 +60,7 @@ export const transition = (
       }
     }
     // 直前の値が0のみの場合、上書きする
-    else if (returnedState.currentValue === '0') {
+    else if (returnedState.currentValue.replace('-', '') === '0') {
       returnedState.currentValue = ''
     }
 
@@ -166,6 +166,16 @@ export const transition = (
     returnedState.currentValue = ''
     returnedState.previousValue = currentResult.value
     returnedState.operator = event.value
+  } else if (check('INPUT_LEFT', 'NEGATE') || check('INPUT_RIGHT', 'NEGATE')) {
+    // 左辺入力状態 / 右辺入力状態 : 符号反転処理
+
+    if (returnedState.currentValue.includes('-')) {
+      returnedState.currentValue = returnedState.currentValue.replace('-', '')
+    } else {
+      if (returnedState.currentValue !== '0') {
+        returnedState.currentValue = '-' + returnedState.currentValue
+      }
+    }
   } else if (event.type === 'ERASEALL') {
     // すべての状態 : 全消去処理
 
@@ -185,8 +195,12 @@ export const transition = (
         0,
         returnedState.currentValue.length - 1
       )
+
+      if (returnedState.currentValue === '-0') {
+        returnedState.currentValue = '0'
+      }
     }
-    if (returnedState.currentValue.length <= 0) {
+    if (returnedState.currentValue.replace('-', '').length <= 0) {
       returnedState.currentValue = '0'
     }
   }
