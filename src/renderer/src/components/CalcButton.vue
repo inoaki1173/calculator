@@ -29,5 +29,6 @@ const sendEvent = inject<SendEvent>('sendEvent')
     tabindex="-1"
     class="calc-button button-ripple"
     @click="sendEvent?.(event)"
+    @mousedown.prevent
   />
 </template>
