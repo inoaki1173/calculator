@@ -1,34 +1,21 @@
-# calculator
+# Calculator
 
-An Electron application with Vue and TypeScript
+Vue学習＆就職活動のポートフォリオ用に作成した電卓アプリです。
+シンプルな二項演算を実装しています。
 
-## Recommended IDE Setup
+## 操作方法
 
-- [VSCode](https://code.visualstudio.com/) + [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) + [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+各ボタンをクリック、または対応するキーボードのキーを押すことで操作を行える
 
-## Project Setup
+### キー対応表
 
-### Install
-
-```bash
-$ npm install
-```
-
-### Development
-
-```bash
-$ npm run dev
-```
-
-### Build
-
-```bash
-# For windows
-$ npm run build:win
-
-# For macOS
-$ npm run build:mac
-
-# For Linux
-$ npm run build:linux
-```
+| キーボード  |            対応操作            |
+| :---------: | :----------------------------: |
+|    0～9     |              数字              |
+|     ．      |             小数点             |
+| +　-　\*　/ |             演算子             |
+|      n      |            符号反転            |
+|    Enter    |            計算実行            |
+|  BackSpace  |   入力中の数字を<br>1桁消去    |
+|   Delete    |  入力中の数字を<br>すべて消去  |
+|   Escape    | すべての数字と<br>計算式を消去 |

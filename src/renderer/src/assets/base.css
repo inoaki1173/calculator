@@ -31,6 +31,24 @@
   --color-text: var(--ev-c-text-1);
 }
 
+:root {
+  --border-regular: 4px;
+
+  --padding-regular: 10px;
+  --padding-small: 5px;
+
+  --button-width: 85px;
+  /*
+  --button-width: 75px;
+  */
+  --button-height: 75px;
+  --button-operator-width: 100px;
+
+  --font-large: 50px;
+  --font-regular: 40px;
+  --font-small: 20px;
+}
+
 *,
 *::before,
 *::after {

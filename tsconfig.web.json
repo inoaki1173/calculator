@@ -8,6 +8,7 @@
 , "tests/setup.ts", "tests/utils.ts", "tests/basic-tests/VuetifyComponent.spec.ts"  ],
   "compilerOptions": {
     "composite": true,
+    "types": ["vitest/globals"],
     "paths": {
       "@renderer/*": [
         "./src/renderer/src/*"
